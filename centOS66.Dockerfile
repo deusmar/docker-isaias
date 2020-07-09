@@ -1,9 +1,7 @@
-FROM docker.agricultura.gov.br/centos-mapa:6.6
+FROM centos:6.6
 
 LABEL poject="MAPA - CentOS 6.6 - Apache HTTPD"
 LABEL maintainer "cgti.docker@agricultura.gov.br"
-
-WORKDIR $ROOT_DIR
 
 ENV ROOT_DIR /var/www/html
 ENV USER userAPP
@@ -16,10 +14,12 @@ ENV LIB_DEPS \
   openssl \
   mcrypt \
   libmcrypt \
-  httpd \
   openssl \
   mod_ssl \
+  httpd \
   httpd-tools
+
+WORKDIR $ROOT_DIR
 
 RUN yum install -y --nogpg ${LIB_DEPS}; yum clean all
 #configuração dos logs
