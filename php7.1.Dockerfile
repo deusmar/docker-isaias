@@ -36,6 +36,8 @@ RUN yum install -y --nogpg ${PHP_EXT}
 RUN	sed -i "s/^memory_limit.*/memory_limit = 2048M/" /etc/php.ini
 RUN sed -i "s/^\;date.timezone.*/date.timezone = America\/Sao_Paulo/"  /etc/php.ini
 
+RUN echo '<?php phpinfo(); ?>' > /var/www/html/info.php
+
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 
 EXPOSE 80
